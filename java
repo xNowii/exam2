@@ -1,5 +1,6 @@
 window.onload= init;
-
+var img = document.createElement("img");
+  img.src = "matplotlib-grid-02.png";
 // The contact manager as a global variable
 let cm; 
 
@@ -13,18 +14,39 @@ function init() {
 	  // Display contacts in a table
 	  // Pass the id of the HTML element that will contain the table
 	  cm.displayContactsAsATable("contacts");
+  document.querySelector('#contactSearchInput').addEventListener('input', (event) => {
+        findContact(event.target.value);
+    })
+
+    document.querySelector('select').addEventListener('input', (event) => {
+        if (event.target.value === 'email')
+            cm.listOfContacts.sort(ContactManager.compareByEmail);
+        else
+            cm.listOfContacts.sort(ContactManager.compareByName);
+        cm.displayContactsAsATable('contacts');
+    })
+}
+
+function findContact(name) {
+    let contacts = cm.Contacts;
+    let regex = new RegExp(`${name}`, 'i')
+    let result = contacts.filter(contact => contact.name.match(regex));
+    console.log(result);
+
+    cm.displayContactsAsATable('contacts', result)
 }
 
 function formSubmitted() {
 	// Get the values from input fields
-	let name = document.querySelector("#name");
+	  let name = document.querySelector("#name");
   	let email = document.querySelector("#email");
     let Machine = 
 document.querySelector("#Machine");
     let editeur = document.querySelector ("#editeur");
     let sortie = document.querySelector("#sortie");
     let image = document.querySelector("#image");
-	let newContact = new Contact(name.value, email.value, editeur.value, Machine.value, sortie.value, image.value);
+    let gameplay = document.querySelector("#gameplay")
+	let newContact = new Contact(name.value, email.value, editeur.value, Machine.value, sortie.value, image.value, gameplay.value);
 	cm.add(newContact);
 	
 	// Empty the input fields
@@ -34,6 +56,7 @@ document.querySelector("#Machine");
   Machine.value = "";
   sortie.value = "";
   image.value = "";
+  gameplay.value = "";
 	
 	// refresh the html table
 	cm.displayContactsAsATable("contacts");
@@ -53,13 +76,14 @@ function loadList() {
 
 
 class Contact {
-	constructor(name, email, Machine, editeur, sortie, image) {
+	constructor(name, email, Machine, editeur, sortie, image, gameplay) {
 		this.name = name;
 		this.email = email;
     this.Machine = Machine;
     this.editeur = editeur;
     this.sortie = sortie;
     this.image = image;
+    this.gameplay = gameplay;
 	}
 }
 
@@ -71,10 +95,10 @@ class ContactManager {
 	}
 	
 	addTestData() {
-		var c1 = new Contact("Jimi Hendrix", "jimi@rip.com");
-  		var c2 = new Contact("Robert Fripp", "robert.fripp@kingcrimson.com");
-  		var c3 = new Contact("Angus Young", "angus@acdc.com");
-  		var c4 = new Contact("Arnold Schwarzenneger", "T2@terminator.com", "ps4");
+		var c1 = new Contact("Pathfinder 2", "PS4/PC", "Deep Silver", "RPG isométrique", "02/09/2021", "Image", "gameplay");
+  		var c2 = new Contact("Baldur's Gate 3", "PC", "Larian Studios", "RPG", "08/23", "image", "gameplay");
+  		var c3 = new Contact("Dragon Age 4", "PS4/5, Xbox ONE/Series", "Electronic Arts", "RPG", "", "image", "gameplay");
+  		var c4 = new Contact("RiotGames MMORPG", "PC", "Riot Games", "MMORPG", "", "image", "gameplay");
 		
 		this.add(c1);
 		this.add(c2);
@@ -107,18 +131,10 @@ class ContactManager {
 	}
 	
 	sort() {
-		// As our array contains objects, we need to pass as argument
-		// a method that can compare two contacts.
-		// we use for that a class method, similar to the distance(p1, p2)
-		// method we saw in the ES6 Point class in module 4
-		// We always call such methods using the name of the class followed
-		// by the dot operator
 		this.listOfContacts.sort(ContactManager.compareByName);
 	}
-  // class method for comparing two contacts by name
+
 	static compareByName(c1, c2) {
-		// JavaScript has builtin capabilities for comparing strings
-		// in alphabetical order
 		if (c1.name < c2.name)
      		return -1;
 		
@@ -168,10 +184,43 @@ class ContactManager {
         	var row = table.insertRow();
         
 			row.innerHTML = "<td>" + currentContact.name + "</td>"
-							+ "<td>" + currentContact.email + "</td>" + "<td>" +   currentContact.editeur + "</td>" + "<td>" + currentContact.Machine +"</td>" + "<td>" + currentContact.sortie +"</td>" + "<td>" + currentContact.image +"</td>"
+							+ "<td>" + currentContact.email + "</td>" + "<td>" +   currentContact.editeur + "</td>" + "<td>" + currentContact.Machine +"</td>" + "<td>" + currentContact.sortie +"</td>" + "<td>" + currentContact.image +"</td>" + "<td>" + currentContact.gameplay +"</td>"
      	});
   
      	// adds the table to the div
      	container.appendChild(table);
   	}
+  sort() {
+        this.listOfContacts.sort(ContactManager.compareByName);
+    }
+
+    static compareByName(c1, c2) {
+
+        if (c1.name < c2.name)
+            return -1;
+
+        if (c1.name > c2.name)
+            return 1;
+
+        return 0;
+    }
+
+    static compareByEmail(c1, c2) {
+        if (c1.email < c2.email)
+            return -1;
+
+        if (c1.email > c2.email)
+            return 1;
+
+        return 0;
+    }
+  static compareByDate(c1, c2) {
+        if (c1.sortie < c2.sortie)
+            return -1;
+
+        if (c1.sortie > c2.sortie)
+            return 1;
+
+        return 0;
+    }
 }
