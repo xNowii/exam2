@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>A Game Manager</title>
+  <meta charset="utf-8"/>
+</head>
+<body> 
+	<form onsubmit="return formSubmitted();">
+	 <fieldset>
+    <legend>Informations</legend>
+		<label>
+			Nom : 
+			<input type="text" id="name" required>
+		</label>
+		<label>
+			Disponible sur : 
+    <input type="text" id="email" required>
+		</label>
+     <label>
+			Editeur : 
+			<input type="text" id="editeur" required>
+		</label>
+     <label>
+			Date de sortie : 
+			<input type="date" id="sortie">
+		</label>
+     <label>
+			Image (URL) : 
+			<input type="URL" id="image" required>
+		</label>
+     <label>
+			Genre :  
+			<input type="text" id="Machine" required>
+		</label>
+     <label>
+			Gameplay : 
+			<input type="URL" id="gameplay">
+		</label>
+		<br>
+		<button>+</button>
+		 </fieldset>
+	</form>
+	
+  <h2>Ma pile de jeux</h2> 
+  <div id="contacts"></div>
+	<p><button onclick="emptyList();";>Empty</button> 
+	 <button onclick="cm.save();">Save</button> 
+   <button onclick="loadList();">Load</button>
+	</p>
+ <section>
+    
+            <legend>Recherche</legend>
+            <label>Nom du jeu (H.S):
+                <input id="contactSearchInput"  type="text">
+            </label>
+            <label>Recherche par: 
+                <select name="sortBy" id="sortBy">
+                    <option value="name" selected>Nom</option>
+                    <option value="email">Console</option>
+                </select>
+            </label>
+    </section>
+  
+</body>
+</html>
