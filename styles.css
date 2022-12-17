@@ -1,0 +1,67 @@
+table {
+  margin-top: 20px;
+  background-color:white;
+}
+table {
+  margin-top: 20px;
+ border-collapse:collapse;
+  border-radius:10px;
+  border:no-border;
+  width:60%;
+  color: #003366
+ }
+th, td {
+ padding: 15px;
+  border-radius:7px;
+  width:5%;
+  font-weight:100;
+  background-color:lightblue; 
+ }
+td {
+ text-align:center;
+ }
+caption {
+ font-weight:bold
+ }
+} 
+
+fieldset {
+  padding:1px;
+  border-radius:10px;
+
+}
+
+label {
+  display:inline-block;
+  border-radius: 10px;
+  margin-bottom:10px;
+}
+
+
+body {
+   background-image: url(https://images3.alphacoders.com/118/1184187.jpg);
+   background-repeat: no-repeat;
+    background-sizing: screen-size;
+  font-weight:bold
+}
+
+input {
+  float:right;
+  border-radius: 10px;
+  margin-right:70px;
+  width:150px;
+}
+
+input:invalid {
+  background-color:pink;
+}
+
+input:valid {
+  background-color:lightgreen;
+}
+
+Button {
+  background-color: cyan;
+  border-radius: 20px;
+  font-weight:bold
+}
