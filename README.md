@@ -1,5 +1,5 @@
 Bonjour ! 
-Cet examen était trop dur pour moi, et malgré quelques modifications c'est sur un échec. Je continuerai à travailler de mon côté en espérant un jour réussir à créer quelque chose de concret avec JS.
+Cet examen était trop dur pour moi, et malgré quelques modifications c'est surtout un échec. Je continuerai à travailler de mon côté en espérant un jour réussir à créer quelque chose de concret avec JS.
 Je tenais avant tout à vous remercier de m'avoir permis de découvrir les prémices de l'univers du codage, bien que difficile, c'était particulièrement intéressant.
 Revenons au travail que je devais faire : 
 
